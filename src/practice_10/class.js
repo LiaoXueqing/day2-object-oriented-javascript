@@ -9,10 +9,10 @@ class Klass{
         return `Class ${this.number}`;
     }
     assignLeader(student){
-        if(student.klass === this){
+        if(student.klass.number === this.number){
             this.leader=student;
         }else{
-            return "It is not one of us.";
+            console.log("It is not one of us.");
         }  
     }
     appendMember(student){

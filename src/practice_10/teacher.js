@@ -7,16 +7,28 @@ class Teacher extends Person{
         this.klasses= klasses;
     }
     introduce(){
-        var str = (this.klasses.length==0) ? 
-        ` I teach No Class.`:` I teach ${this.klasses.getDisplayName()}.`;
-        return super.introduce()+` I am a Teacher.${str}`;
+        let className = "";
+        if(this.klasses===undefined || this.klasses.length===0){
+            className = `No Class`;
+        }else{
+            className = 'Class';
+            this.klasses.forEach(element=>{
+                className += ` ${element.number},`
+            });
+            className = className.substring(0,className.length-1);
+        }
+        return super.introduce()+` I am a Teacher. I teach ${className}.`;
     }
-    introduceWith(student){
-        var str = (student.klass.number == this.klass.number?"teach Jerry.":"don't teach Jerry.");
-        return super.introduce()+` I am a Teacher. I ${str}`;
-    }
+    // introduceWith(student){
+    //     var str = (student.klass.number == this.klass.number?"teach Jerry.":"don't teach Jerry.");
+    //     return super.introduce()+` I am a Teacher. I ${str}`;
+    // }
     isTeaching(student){
-        return true;
+        var num = student.klass.number;
+        this.klasses.forEach(element=>{
+            if(element.number==num) return true;
+        })
+        return false;
     }
 }
 export default Teacher;
