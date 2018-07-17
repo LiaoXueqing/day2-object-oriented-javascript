@@ -1,6 +1,7 @@
 
 "use strict";
 class Klass{
+    leader;
     constructor(number){
         this.number=number;
     }
@@ -15,9 +16,7 @@ class Klass{
         }  
     }
     appendMember(student){
-        // var k = student.klass;
         student.klass = this;
-        // console.log("---------------------"+student.klass==k);
     }
     equals(k){
         if(this.id==k.id) return true;
