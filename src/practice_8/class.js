@@ -9,7 +9,7 @@ class Klass{
     }
     assignLeader(student){
         if(student.klass.number == this.number){
-            this.assignLeader=student;
+            this.leader=student;
         }
         
     }

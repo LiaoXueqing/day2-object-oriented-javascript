@@ -7,7 +7,7 @@ class Student extends Person{
         this.klass = klass;
     }
     introduce(){
-        var str = (this.klass.assignLeader==this?`Leader of Class 2`:`at ${this.klass.getDisplayName()}`);
+        var str = (this.klass.leader===this?`Leader of Class 2`:`at ${this.klass.getDisplayName()}`);
         return super.introduce()+` I am a Student. I am ${str}.`;
     }
 }
