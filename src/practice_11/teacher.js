@@ -1,34 +1,35 @@
 "use strict";
 
 import Person from "../../src/practice_11/person.js";
-class Teacher extends Person{
-    constructor(id,name,age,klasses){
-        super(id,name,age);
-        this.klasses= klasses;
+class Teacher extends Person {
+    constructor(id, name, age, klasses) {
+        super(id, name, age);
+        this.klasses = klasses;
     }
-    introduce(){
+    introduce() {
         let className = "";
-        if(this.klasses===undefined || this.klasses.length===0){
+        if (this.klasses === undefined || this.klasses.length === 0) {
             className = `No Class`;
-        }else{
-            className = 'Class';
-            this.klasses.forEach(element=>{
-                className += ` ${element.number},`
-            });
-            className = className.substring(0,className.length-1);
+        } else {
+            className = 'Class ';
+            className += this.klasses.map(item => item.number).join(", ");
         }
-        return super.introduce()+` I am a Teacher. I teach ${className}.`;
+        return super.introduce() + ` I am a Teacher. I teach ${className}.`;
     }
-    // introduceWith(student){
-    //     var str = (student.klass.number == this.klass.number?"teach Jerry.":"don't teach Jerry.");
-    //     return super.introduce()+` I am a Teacher. I ${str}`;
-    // }
-    isTeaching(student){
+    isTeaching(student) {
         var num = student.klass.number;
-        this.klasses.forEach(element=>{
-            if(element.isIn(student)) return true;
+        this.klasses.forEach(element => {
+            if (element.isIn(student)) return true;
         })
         return false;
+    }
+    knowAboutJoin(student, klass) {
+        console.log(`I am ${this.name}. I know ${student.name} has joined ${klass.getDisplayName()}.`);
+    }
+
+    knowAboutLeader(student, klass) {
+        // console.log(`I am Tom. I know Jerry become Leader of Class 2.`);
+        console.log(`I am ${this.name}. I know ${student.name} become Leader of ${klass.getDisplayName()}.`);
     }
 }
 export default Teacher;
