@@ -28,7 +28,6 @@ class Teacher extends Person {
     }
 
     knowAboutLeader(student, klass) {
-        // console.log(`I am Tom. I know Jerry become Leader of Class 2.`);
         console.log(`I am ${this.name}. I know ${student.name} become Leader of ${klass.getDisplayName()}.`);
     }
 }

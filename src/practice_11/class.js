@@ -11,9 +11,8 @@ class Klass{
     assignLeader(student){
         if(student.klass.number === this.number){
             this.leader=student;
-            if(this.teacher!=null){
-                this.teacher.knowAboutLeader(student,this);
-                // console.log(`I am Tom. I know Jerry become Leader of Class 2.`);
+            if(this.notifyAssignLeader!=undefined){
+                this.notifyAssignLeader(student);
             }
         }else{
             console.log("It is not one of us.");
@@ -21,23 +20,24 @@ class Klass{
     }
     appendMember(student){
         student.klass = this;
-        if(this.teacher!=null){
-            this.teacher.knowAboutJoin(student,this);
+        if(this.notifyJoinMember!=undefined){
+            this.notifyJoinMember(student);
         }
-
     }
     isIn(student){
         if(student.klass == this.number) return true;
         return false;
     }
     registerAssignLeaderListener(teacher){
-        this.teacher = teacher;
-        
-        // console.log("I am Tom. I know Jerry become Leader of Class 2.");
+        this.notifyAssignLeader=function(student){
+            teacher.knowAboutLeader(student,this);
+        }
     }
     registerJoinListener(teacher){
-        this.teacher = teacher;
-        // console.log("I am Tom. I know Jerry has joined Class 2.");
+        this.notifyJoinMember=function(student){
+            // console.log(`I am Tom. I know Jerry become Leader of Class 2.`);
+            teacher.knowAboutJoin(student,this);
+        }
     }
 }
 export default Klass;
